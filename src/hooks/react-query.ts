@@ -1,5 +1,5 @@
-import axios from "axios";
-import { QueryClient, QueryFunction, QueryFunctionContext, QueryKey, useInfiniteQuery, useQuery, UseQueryOptions } from "react-query";
+import { axiosApi } from "@/http/axios";
+import { QueryClient, QueryFunctionContext, useInfiniteQuery, useQuery, UseQueryOptions } from "react-query";
 
 export type QueryKeyT = [string, object | undefined];
 
@@ -27,7 +27,7 @@ const fetch = <T>({
     pageParam
 }: QueryFunctionContext<QueryKeyT>): Promise<T> => {
     const [url, params] = queryKey;
-    return axios
+    return axiosApi
         .get<T>(url, {
             params: {
                 ...params,
@@ -55,11 +55,12 @@ export const useLoadMore = <T>(
 ) => {
     return useInfiniteQuery<IPage<T>, Error, IPage<T>, QueryKeyT>(
         [url, params],
-        ({pageParam = 1, ...context}) => fetch({...context, pageParam}),
+        ({pageParam = 0, ...context}) => fetch({...context, pageParam}),
         {
-            getNextPageParam: (_, allPages) => {
-                const nextPage = allPages.length + 1;
-                return nextPage;
+            getNextPageParam: (page) => {
+                return !page.last
+                    ? page.number + 1
+                    : undefined
             },
             refetchOnMount: false,
             refetchOnWindowFocus: false

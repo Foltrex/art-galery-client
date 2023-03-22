@@ -1,13 +1,25 @@
-import { QueryKeyT, useFetch, useLoadMore } from "@/hooks/react-query"
+import { prefetchInfiniteQuery, useFetch, useLoadMore } from "@/hooks/react-query"
+import { ART_SERVICE_PATH } from "@/http/axios"
 import { Art } from "@/models/Art"
 
-export const useLoadMoreArts = () => {
+export const ART_PAGE_SIZE = 9;
+
+export const useLoadMoreArts = (params: object) => {
     return useLoadMore<Art>(
-        'https://rickandmortyapi.com/api/character', 
-        { page: 1 }
+        `${ART_SERVICE_PATH}/arts`, 
+        { 
+            size: ART_PAGE_SIZE, 
+            ...params 
+        }
     )
 }
 
+export const prefetchInfiniteArts = () => {
+    return prefetchInfiniteQuery<Art>(`${ART_SERVICE_PATH}/arts`, {
+        size: ART_PAGE_SIZE
+      })
+}
+
 export const useGetArtById = (id: string) => {
-    return useFetch<Art
+    return useFetch<Art>(`${ART_SERVICE_PATH}/arts/${id}`)
 }
