@@ -31,7 +31,6 @@ const ArtListItem: React.FunctionComponent<IArtListItemProps> = ({art}) => {
     return (
         <Card>
             <ImageListItem key={art.id} sx={{ cursor: 'pointer' }}>
-                {/* <ImageListItemBar position='top' title={facilityName} /> */}
                 <img
                     src={image}
                     alt={art.name}
