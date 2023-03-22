@@ -1,5 +1,6 @@
 import { Card, CardContent, CardMedia, createTheme, Grid, ThemeProvider, Typography } from '@mui/material';
 import { GetServerSideProps } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Character } from '.';
 
@@ -45,13 +46,18 @@ export default function Art({art, qr}: IArtProps) {
                                 {art.name}
                             </Typography>
                             <Typography variant='body1'>
-                                Ivan Ivanovich
+                                <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    Ivan Ivanovich
+                                </Link>
                             </Typography>
                             <Typography variant='body1'>
                                 maslo, 14.03.2023
                             </Typography>
                             <Typography variant='body1'>
-                                Minsk, 1000 rub
+                                <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    Minsk
+                                </Link>
+                                , 1000 $
                             </Typography>
                         </ThemeProvider>
                     </CardContent>
