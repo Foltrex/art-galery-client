@@ -1,38 +1,41 @@
 import { prefetchInfiniteArts, useLoadMoreArts } from '@/api/ArtApi';
+import FilterDropdown, { SortParamsT } from '@/components/ui/FilterDropdown';
 import ScrollTop from '@/components/ui/ScrollTop';
 import SearchBar from '@/components/ui/SearchBar';
 import { useScrollAction } from '@/hooks/useScrollAction';
-import { Box, Container, Paper, Stack } from '@mui/material';
+import { Box, Container, Divider, Paper, Stack } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 import ArtList from './ArtList';
 
+
+
 export default function Home() {
   const [artistName, setArtistName] = useState('');
   const [cityName, setCityName] = useState('');
   const [artNameAndDescription, setArtNameAndDescription] = useState('');
+  const [sortParam, setSortParam] = useState<string>();
+  const [sortDirection, setSortDirection] = useState<string>();
 
+  const sortParams: SortParamsT[] = [
+    {
+      value: 'date-creation',
+      label: 'Date Creation'
+    },
+    {
+      value: 'price',
+      label: 'Price'
+    }
+  ];
   
   const { data, fetchNextPage, isSuccess } = useLoadMoreArts({
     artistName: artistName,
     cityName: cityName,
-    artNameAndDescription: artNameAndDescription,
+    artNameAndDescription: artNameAndDescription
   });
   
   useScrollAction(() => fetchNextPage())
-
-  const handleArtistNameSearchBoxClick = (searchText: string) => {
-    setArtistName(searchText);
-  }
-
-  const handleCityNameSearchBoxClick = (searchText: string) => {
-    setCityName(searchText);
-  }
-
-  const handleArtSearchBoxClick = (searchText: string) => {
-    setArtNameAndDescription(searchText);
-  }
 
   return (
     <>
@@ -54,18 +57,27 @@ export default function Home() {
             }}
           >
             <SearchBar
-              onClick={handleArtistNameSearchBoxClick}
+              onClick={setArtistName}
               placeholder='Enter artist name...' />
             <SearchBar
-              onClick={handleCityNameSearchBoxClick}
+              onClick={setCityName}
               placeholder='Enter city name...' />
             <SearchBar
-              onClick={handleArtSearchBoxClick}
+              onClick={setArtNameAndDescription}
               placeholder='Enter art name or description'
             />
           </Stack>
+          
+          <FilterDropdown 
+            sx={{justifyContent: 'end', mr: 5, mb: 3}} 
+            list={sortParams} 
+            onSortParamChange={setSortParam}
+            onSortDirectionChange={setSortDirection}
+          />
 
-          {isSuccess && <ArtList data={data} />}
+          <Divider sx={{mb: 2}} />
+
+          {isSuccess && <ArtList data={data} sortParam={sortParam} sortDirection={sortDirection} />}
         </Paper>
         <ScrollTop />
       </Container>

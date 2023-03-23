@@ -5,4 +5,5 @@ export interface Art {
     name: string;
     description: string;
     artist: Artist;
+    dateCreation: Date;
 }

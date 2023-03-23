@@ -13,6 +13,9 @@ export default function Document() {
           rel="stylesheet"
         />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"></link>
+
         <link rel='shortcut icon' href='/favicon.png' />
       </Head>
       <body>

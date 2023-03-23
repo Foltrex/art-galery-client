@@ -18,12 +18,16 @@ const SearchBar: React.FunctionComponent<ISearchBarProps> = ({
     }
 
     return (
-        <Paper sx={{ position: 'relative', width: '100%' }}>
+        <Paper sx={{ position: 'relative', width: '100%', borderRadius: 10 }}>
             <InputBase
                 sx={{
                     display: 'block',
-                    px: 1,
-                    py: 0.5
+                    px: 2,
+                    py: 0.5,
+                    width: '85%',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis'
                 }}
                 value={searchText}
                 onChange={handleInputChange}
@@ -35,7 +39,7 @@ const SearchBar: React.FunctionComponent<ISearchBarProps> = ({
                 sx={{
                     position: 'absolute',
                     top: '50%',
-                    transform: 'translate(0, -50%)',
+                    transform: 'translate(-25%, -50%)',
                     right: 0,
                 }}
             >

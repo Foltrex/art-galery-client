@@ -45,7 +45,11 @@ export const useFetch = <T>(
     return useQuery<T, Error, T, QueryKeyT>(
         [url, params],
         context => fetch(context),
-        config
+        {
+            ...config,
+            refetchOnMount: false,
+            refetchOnWindowFocus: false
+        }
     );
 };
 
