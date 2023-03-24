@@ -1,4 +1,4 @@
-import { Art } from '@/models/Art';
+import { Art as ArtEntity } from '@/models/Art';
 import { Card, CardContent, CardMedia, createTheme, Grid, ThemeProvider, Typography } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ const theme = createTheme({
 })
 
 interface IArtProps {
-    art: Art;
+    art: ArtEntity;
     qr: string;
 }
 
@@ -98,28 +98,3 @@ export const getServerSideProps: GetServerSideProps = async ({req, res}) => {
       }
     };
 }
-
-
-{/* <Card sx={{position: 'relative', maxWidth: 345 }} >
-<CardMedia
-    image={art.image}
-/>
-<CardContent>
-    <Typography gutterBottom variant="h5" component="div">
-        {art.name}
-    </Typography>
-</CardContent>
-<Tooltip title='Show QR' sx={{position: 'absolute', bottom: 1, left: 1}} >
-    <IconButton>
-        <img src={`data:image/png;base64, ${qr}`} />
-    </IconButton>
-</Tooltip>
-</Card>
-{/* <CardActions>
-
-</CardActions> */}
-{/* <img
-src={art.image}
-alt={art.name}
-/> */}
-{/* <h2>{art.name}</h2> */}
