@@ -4,7 +4,7 @@ import { ImageList } from '@mui/material';
 import * as React from 'react';
 import { InfiniteData } from 'react-query';
 import ArtListItem from './ArtListItem';
-import { useArtComparator } from './useArtComparator';
+import { useArtComparator } from '../../hooks/arts/useArtComparator';
 
 interface IArtListProps {
     data: InfiniteData<IPage<Art>>;

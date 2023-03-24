@@ -1,11 +1,10 @@
 import { useGetLastArtInfoByArtId } from '@/api/ArtInfoApi';
 import { Art } from '@/models/Art';
-import { Box, Card, ImageListItem, ImageListItemBar, Skeleton, Typography } from '@mui/material';
+import { Card, ImageListItem, ImageListItemBar, Skeleton, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { render } from 'react-dom';
-import { useGetArtListItemImageByArtId } from './useGetArtListItemImageByArtId';
+import { useGetArtListItemImageByArtId } from '../../hooks/arts/useGetArtListItemImageByArtId';
 
 interface IArtListItemProps {
     art: Art;

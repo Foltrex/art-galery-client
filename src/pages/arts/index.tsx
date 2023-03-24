@@ -7,7 +7,7 @@ import { Box, Container, Divider, Paper, Stack } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import { useEffect, useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
-import ArtList from './ArtList';
+import ArtList from '../../components/arts/ArtList';
 
 
 
