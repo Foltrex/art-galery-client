@@ -20,8 +20,6 @@ const ArtList: React.FunctionComponent<IArtListProps> = ({ data, sortParam, sort
         return [...arts].sort(comporator);
     }, [data, sortParam, sortDirection])
 
-    console.log(sortedArts)
-
     return (
         <ImageList
             cols={3}

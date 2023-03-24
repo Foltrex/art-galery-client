@@ -22,10 +22,6 @@ export default function Home() {
     {
       value: 'date-creation',
       label: 'Date Creation'
-    },
-    {
-      value: 'price',
-      label: 'Price'
     }
   ];
   

@@ -1,6 +1,7 @@
 import { useGetLastArtInfoByArtId } from '@/api/ArtInfoApi';
 import { Art } from '@/models/Art';
 import { Box, Card, ImageListItem, ImageListItemBar, Skeleton, Typography } from '@mui/material';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { render } from 'react-dom';
@@ -36,14 +37,13 @@ const ArtListItem: React.FunctionComponent<IArtListItemProps> = ({ art }) => {
     const renderImage = () => {
         if (isImageFetched && image) {
             return (
-                <img
+                <Image
                     src={image}
                     alt={art.name}
                     onClick={() => handleImageClick(art.id!)}
-                    loading='lazy'
+                    fill
                     style={{
-                        height: '100%',
-                        width: 'auto'
+                        objectFit: 'cover'
                     }}
                 />
             );

@@ -1,8 +1,8 @@
+import { Art } from '@/models/Art';
 import { Card, CardContent, CardMedia, createTheme, Grid, ThemeProvider, Typography } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Character } from '.';
 
 const theme = createTheme({
     typography: {
@@ -14,7 +14,7 @@ const theme = createTheme({
 })
 
 interface IArtProps {
-    art: Character;
+    art: Art;
     qr: string;
 }
 
@@ -39,7 +39,7 @@ export default function Art({art, qr}: IArtProps) {
                 xs={5}
             >
                 <Card sx={{position: 'relative', boxShadow: 'none'}}>
-                    <CardMedia image={art.image} sx={{height: 300}} />
+                    {/* <CardMedia image={art.image} sx={{height: 300}} /> */}
                     <CardContent>
                         <ThemeProvider theme={theme}>
                             <Typography variant='h4'>
