@@ -4,6 +4,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <base href={`${process.env.NEXT_PUBLIC_APP_PUBLIC_URL}/`} />
+        
         <link
           rel="preconnect"
           href="https://fonts.googleapis.com"

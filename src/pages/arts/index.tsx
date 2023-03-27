@@ -9,9 +9,11 @@ import { useEffect, useState } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 import ArtList from '../../components/arts/ArtList';
 
+interface IHomeProps {
+  env: NodeJS.ProcessEnv
+}
 
-
-export default function Home() {
+export default function Home({ env }: IHomeProps) {
   const [artistName, setArtistName] = useState('');
   const [cityName, setCityName] = useState('');
   const [artNameAndDescription, setArtNameAndDescription] = useState('');
@@ -89,6 +91,7 @@ export const getServerSideProps: GetServerSideProps<any> = async ({ req, res }) 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      env: JSON.stringify(process.env)
     },
   };
 } 
